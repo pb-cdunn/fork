@@ -55,13 +55,14 @@ export PKG_CONFIG_PATH   := $(PREFIX)/lib/pkgconfig
 export PIP_CACHE_DIR
 
 REPOS=/home/UNIXHOME/cdunn/repo/bb
+REPOS=repos
 WHEEL_DIR=${PFHOME}/wheels
 DIST_DIR=${PFHOME}/dist
 # Not sure what BDIST_DIR does. Any effect?
 BDIST_DIR=${PFHOME}/bdist
 VPATH=.:done
 
-all: FALCON-whl pypeFLOW-whl FALCON-polish-whl FALCON-pbsmrtpipe-whl
+all: FALCON-whl pypeFLOW-whl FALCON-polish-whl FALCON-pbsmrtpipe-whl GenomicConsensus-whl
 falcon_kit:
 	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel -h
 	cd ${REPOS}/FALCON; rm -rf build/

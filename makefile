@@ -62,7 +62,7 @@ DIST_DIR=${PFHOME}/dist
 BDIST_DIR=${PFHOME}/bdist
 VPATH=.:done
 
-all: FALCON-whl pypeFLOW-whl FALCON-polish-whl FALCON-pbsmrtpipe-whl GenomicConsensus-whl pbcommand-whl pbcore-whl pbcoretools-whl pbalign-whl
+all: FALCON-whl pypeFLOW-whl FALCON-polish-whl FALCON-pbsmrtpipe-whl GenomicConsensus-whl pbcommand-whl pbcore-whl pbcoretools-whl pbalign-whl ConsensusCore-whl
 falcon_kit:
 	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel -h
 	cd ${REPOS}/FALCON; rm -rf build/
@@ -71,6 +71,8 @@ falcon_kit:
 %-whl:
 	cd ${REPOS}/$*; rm -rf build/
 	cd ${REPOS}/$*; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}
+	touch done/$@
+ConsensusCore-whl:
 	touch done/$@
 fetch:
 	${MAKE} -f fetch.mk

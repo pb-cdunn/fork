@@ -61,7 +61,7 @@ DIST_DIR=${PFHOME}/dist
 BDIST_DIR=${PFHOME}/bdist
 VPATH=.:done
 
-all: FALCON-whl pypeFLOW-whl FALCON-polish-whl
+all: FALCON-whl pypeFLOW-whl FALCON-polish-whl FALCON-pbsmrtpipe-whl
 falcon_kit:
 	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel -h
 	cd ${REPOS}/FALCON; rm -rf build/

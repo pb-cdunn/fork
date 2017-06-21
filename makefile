@@ -16,6 +16,7 @@ PERL      = perl
 CCACHE_DIR ?= $(PFHOME)/.git/ccache
 CCACHE_BASEDIR := $(PFHOME)
 
+PIP_CACHE:=${PFHOME}/.git/pip
 PIP_CACHE_DIR?=${PIP_CACHE}
 # With that, we do not actually need to pass --cache-dir, but it does not hurt.
 
@@ -54,7 +55,17 @@ export PKG_CONFIG_PATH   := $(PREFIX)/lib/pkgconfig
 export PIP_CACHE_DIR
 
 REPOS=/home/UNIXHOME/cdunn/repo/bb
+WHEEL_DIR=${PFHOME}/wheels
+DIST_DIR=${PFHOME}/dist
+# Not sure what BDIST_DIR does. Any effect?
+BDIST_DIR=${PFHOME}/bdist
 
-all: falcon_kit
+all: FALCON-whl pypeFLOW-whl
 falcon_kit:
-	${PIP} wheel ${REPOS}/FALCON
+	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel -h
+	cd ${REPOS}/FALCON; rm -rf build/
+	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel
+	cd ${REPOS}/FALCON; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}
+%-whl:
+	cd ${REPOS}/$*; rm -rf build/
+	cd ${REPOS}/$*; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}

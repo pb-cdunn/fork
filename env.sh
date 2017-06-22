@@ -15,6 +15,6 @@ module load openblas # so ConsensusCore can use numpy
 set -vex
 
 PFHOME=/scratch/cdunn/pitchfork
-PREFIX=/scratch/cdunn/pf
+PREFIX=/scratch/cdunn/pu
 PYTHONUSERBASE=${PREFIX}
 export PFHOME PREFIX PYTHONUSERBASE

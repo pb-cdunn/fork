@@ -74,6 +74,7 @@ ConsensusCore-pip: numpy-pip
 	cd ${REPOS}/ConsensusCore; python setup.py -v install --user --boost=$(BOOST_ROOT)/include
 numpy-pip:
 	pip install --user numpy
+GenomicConsensus-pip: ConsensusCore-pip
 install-pip:
 	python2.7 get-pip.py --user
 falcon_kit:
@@ -87,7 +88,7 @@ falcon_kit:
 	touch done/$@
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; pip install -v --user .
+	cd ${REPOS}/$*; pip install -v --no-deps --user .
 	touch done/$@
 fetch:
 	${MAKE} -f fetch.mk

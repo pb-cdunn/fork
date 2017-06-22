@@ -62,7 +62,20 @@ DIST_DIR=${PFHOME}/dist
 BDIST_DIR=${PFHOME}/bdist
 VPATH=.:done
 
-all: FALCON-whl pypeFLOW-whl FALCON-polish-whl FALCON-pbsmrtpipe-whl GenomicConsensus-whl pbcommand-whl pbcore-whl pbcoretools-whl pbalign-whl ConsensusCore-whl
+BOOST_ROOT=/mnt/software/b/boost/1.60
+
+all: basic gc sl cc
+basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
+gc:GenomicConsensus-pip
+sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
+cc: ConsensusCore-pip
+ConsensusCore-pip: numpy-pip
+	#cd ${REPOS}/ConsensusCore; pip install -v --user --no-deps --install-option="--swig=$(PREFIX)/bin/swig" --install-option="--swig-lib=$(PREFIX)/share/swig/3.0.8" --install-option="--boost=$(BOOST_ROOT)/include" .
+	cd ${REPOS}/ConsensusCore; python setup.py -v install --user --boost=$(BOOST_ROOT)/include
+numpy-pip:
+	pip install --user numpy
+install-pip:
+	python2.7 get-pip.py --user
 falcon_kit:
 	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel -h
 	cd ${REPOS}/FALCON; rm -rf build/
@@ -72,7 +85,9 @@ falcon_kit:
 	cd ${REPOS}/$*; rm -rf build/
 	cd ${REPOS}/$*; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}
 	touch done/$@
-ConsensusCore-whl:
+%-pip:
+	cd ${REPOS}/$*; rm -rf build/
+	cd ${REPOS}/$*; pip install -v --user .
 	touch done/$@
 fetch:
 	${MAKE} -f fetch.mk

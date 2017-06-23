@@ -28,18 +28,44 @@ OPSYS     := $(shell $(UNAME) -s)
 
 CFLAGS  =
 LDFLAGS =
+
 ifeq ($(OPSYS),Darwin)
+
 CFLAGS    += -fPIC -I$(PREFIX)/include
 LDFLAGS   += -L$(PREFIX)/lib
+
 else ifeq ($(shell echo $(CC)|grep gcc>&/dev/null&&echo yes||true),yes)
+
 CFLAGS    += -fPIC -I$(PREFIX)/include -D_GNU_SOURCE
 LDFLAGS   += -L$(PREFIX)/lib -L$(PREFIX)/lib64 -static-libstdc++
+
 else
+
 CFLAGS    += -fPIC -I$(PREFIX)/include
 LDFLAGS   += -L$(PREFIX)/lib -L$(PREFIX)/lib64
+
 endif
 
 CXXFLAGS  += $(CFLAGS)
+
+
+ifeq ($(OPSYS),Darwin)
+
+#HAVE_PYTHON ?= /usr/bin/python
+#HAVE_ZLIB ?= /usr
+DYLIB:=dylib
+DYLD_LIBRARY_PATH:=$(PREFIX)/lib:${DYLD_LIBRARY_PATH}
+export DYLD_LIBRARY_PATH
+
+else
+
+DYLIB:=so
+LD_LIBRARY_PATH:=$(PREFIX)/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH
+
+endif
+
+
 
 export CC
 export CXX
@@ -63,9 +89,28 @@ BDIST_DIR=${PFHOME}/bdist
 VPATH=.:done
 
 BOOST_ROOT=/mnt/software/b/boost/1.60
+export BOOST_ROOT
 
-all: basic gc sl cc
+all: basic gc sl cc cc2
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
+cc2: ConsensusCore2-pip
+ccs-install: seqan-install
+	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ccs.sh
+	touch done/$@
+seqan-install:
+	cd ${REPOS}/seqan && tar cf - include|tar xf - -C ${PREFIX}/
+	touch done/$@
+foo:
+	     CMAKE_COMMAND=$(CMAKE) \
+        Boost_INCLUDE_DIRS=$(BOOST_ROOT)/include \
+              SWIG_COMMAND=$(shell . $(PREFIX)/setup-env.sh && which swig) \
+     pbcopper_INCLUDE_DIRS=$(PREFIX)/include \
+        pbcopper_LIBRARIES=$(PREFIX)/lib/libpbcopper.a \
+
+ConsensusCore2-pip:
+	cd ${REPOS}/unanimity; \
+                   VERBOSE=1 \
+        pip install -v --no-deps --user .
 gc:GenomicConsensus-pip
 sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
 cc: ConsensusCore-pip

@@ -1,4 +1,4 @@
-# Required vars: PREFIX DYLIB BOOST_ROOT
+# Required vars: PREFIX DYLIB
 # Required deps: z boost hts
 
 set -vex

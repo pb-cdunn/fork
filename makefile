@@ -1,4 +1,8 @@
+# Be sure to source env.sh before using this makefile.
+
 all: # default rule
+
+setup: install-pip
 
 PFHOME:=$(shell pwd)
 SHELL     = /bin/bash -e
@@ -116,59 +120,51 @@ zlib-install:
 	touch done/$@
 
 # TODO: What uses this?
-BOOST_ROOT:=${PREFIX}
-export BOOST_ROOT
+#BOOST_ROOT:=${PREFIX}
+#export BOOST_ROOT
 
 
-all: basic gc sl cc cc2
+all: basic gc sl cc cc2 ccs
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
+ccs: ccs-install
 pbbam-install: boost-headers-install #htslib-install RE_ADD LATER!!!
 	cd ${REPOS}/pbbam && bash ${PFHOME}/install-pbbam.sh
 	touch done/$@
 pbcopper-install: boost-headers-install
 	cd ${REPOS}/pbcopper && bash ${PFHOME}/install-pbcopper.sh
 	touch done/$@
-ccs-install: seqan-install htslib-install boost-headers-install
+ccs-install: seqan-install htslib-install pbcopper-install pbbam-install boost-headers-install
 	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ccs.sh
 	touch done/$@
 seqan-install: zlib-install
 	cd ${REPOS}/seqan && tar cf - include|tar xf - -C ${PREFIX}/
 	touch done/$@
-# ConsensusCore2:
-#	     CMAKE_COMMAND=$(CMAKE) \
-#        Boost_INCLUDE_DIRS=$(BOOST_ROOT)/include \
-#              SWIG_COMMAND=$(shell . $(PREFIX)/setup-env.sh && which swig) \
-#     pbcopper_INCLUDE_DIRS=$(PREFIX)/include \
-#        pbcopper_LIBRARIES=$(PREFIX)/lib/libpbcopper.a \
-
 ConsensusCore2-pip:
-	cd ${REPOS}/unanimity; \
-                   VERBOSE=1 \
-        pip install -v --no-deps --user .
+	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ConsensusCore2.sh
+	touch done/$@
 gc:GenomicConsensus-pip
 sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
 cc: ConsensusCore-pip
-ConsensusCore-pip: numpy-pip
-	#cd ${REPOS}/ConsensusCore; pip install -v --user --no-deps --install-option="--swig=$(PREFIX)/bin/swig" --install-option="--swig-lib=$(PREFIX)/share/swig/3.0.8" --install-option="--boost=$(BOOST_ROOT)/include" .
-	cd ${REPOS}/ConsensusCore; python setup.py -v install --user --boost=$(BOOST_ROOT)/include
+ConsensusCore-pip: numpy-pip boost-headers-install
+	cd ${REPOS}/ConsensusCore && bash ${PFHOME}/install-ConsensusCore.sh
+	touch done/$@
 numpy-pip:
 	pip install --user numpy
-GenomicConsensus-pip: ConsensusCore-pip
-install-pip:
-	python2.7 get-pip.py --user
-falcon_kit:
-	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel -h
-	cd ${REPOS}/FALCON; rm -rf build/
-	#cd ${REPOS}/FALCON; python2.7 setup.py -v bdist_wheel
-	cd ${REPOS}/FALCON; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}
-%-whl:
-	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}
 	touch done/$@
+GenomicConsensus-pip: ConsensusCore-pip
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
 	cd ${REPOS}/$*; pip install -v --no-deps --user .
 	touch done/$@
 fetch:
 	${MAKE} -f fetch.mk
+install-pip:
+	python2.7 get-pip.py --user
+	touch done/$@
+
+# NOT USED
+%-whl:
+	cd ${REPOS}/$*; rm -rf build/
+	cd ${REPOS}/$*; python2.7 setup.py -v --no-user-cfg bdist_wheel --bdist-dir ${BDIST_DIR} --dist-dir ${DIST_DIR}
+	touch done/$@

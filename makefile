@@ -1,3 +1,5 @@
+all: # default rule
+
 PFHOME:=$(shell pwd)
 SHELL     = /bin/bash -e
 CC        = gcc
@@ -88,16 +90,41 @@ DIST_DIR=${PFHOME}/dist
 BDIST_DIR=${PFHOME}/bdist
 VPATH=.:done
 
-BOOST_ROOT=/mnt/software/b/boost/1.60
+# Note: pkg-config may be available for these. But
+# also note that our copies of the .pc files lack ${prefix}, so beware.
+#  https://github.com/open-source-parsers/jsoncpp/commit/2f178f390fce67bcfd1868ad14daee9778a4f941
+BOOST_ORIG=/mnt/software/b/boost/1.60
+HTSLIB_ORIG=/mnt/software/h/htslib/1.3.1
+ZLIB_ORIG=/mnt/software/z/zlib/1.2.8-cloudflare
+
+boost-headers-install:
+	rsync -av --delete ${BOOST_ORIG}/include/boost ${PREFIX}/include/
+	touch done/$@
+boost-install: boost-headers-install
+	# TODO: Install only the ones we actually need.
+	rsync -av ${BOOST_ORIG}/lib/ ${PREFIX}/lib
+	touch done/$@
+htslib-install:
+	rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
+	rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
+	touch done/$@
+zlib-install:
+	rsync -av ${ZLIB_ORIG}/include/ ${PREFIX}/include/
+	rsync -av ${ZLIB_ORIG}/lib/ ${PREFIX}/lib
+	touch done/$@
+
+# TODO: What uses this?
+BOOST_ROOT:=${PREFIX}
 export BOOST_ROOT
+
 
 all: basic gc sl cc cc2
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
-ccs-install: seqan-install
+ccs-install: seqan-install boost-headers-install htslib-install
 	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ccs.sh
 	touch done/$@
-seqan-install:
+seqan-install: zlib-install
 	cd ${REPOS}/seqan && tar cf - include|tar xf - -C ${PREFIX}/
 	touch done/$@
 foo:

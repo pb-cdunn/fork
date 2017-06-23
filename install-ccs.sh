@@ -1,5 +1,6 @@
-# Required var: PREFIX DYLIB BOOST_ROOT
+# Required vars: PREFIX DYLIB BOOST_ROOT
 # Required deps: z boost bam hts seqan pbcopper
+
 set -vex
 mkdir -p _build
 cd _build
@@ -13,15 +14,16 @@ fi
 cmake \
         -DUNY_build_tests=OFF \
         -DZLIB_INCLUDE_DIRS=${PREFIX}/include \
-        -DZLIB_LIBRARIES=${PREFIX}/lib/libz.${DYLIB} \
-        -DBoost_INCLUDE_DIRS=${BOOST_ROOT}/include \
+        -DZLIB_LIBRARIES=${PREFIX}/lib/libz.{DYLIB} \
+        -DBoost_INCLUDE_DIRS=${PREFIX}/include \
         -DPacBioBAM_INCLUDE_DIRS=${PREFIX}/include \
         -DPacBioBAM_LIBRARIES=${PacBioBAM_LIBRARIES} \
-        -DHTSLIB_INCLUDE_DIRS=${PREFIX}/src/htslib/include \
-        -DHTSLIB_LIBRARIES=${PREFIX}/src/htslib/lib/libhts.a \
+        -DHTSLIB_INCLUDE_DIRS=${PREFIX}/include \
+        -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.${DYLIB} \
         -DSEQAN_INCLUDE_DIRS=${PREFIX}/include \
         -Dpbcopper_INCLUDE_DIRS=${PREFIX}/include \
         -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \
     ..
 ${MAKE}
-rsync -ax ccs ${PREFIX}/bin/
+rsync -av ccs ${PREFIX}/bin/
+#TODO: Ask MJ why he had "-ax".

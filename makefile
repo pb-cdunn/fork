@@ -98,7 +98,7 @@ HTSLIB_ORIG=/mnt/software/h/htslib/1.3.1
 ZLIB_ORIG=/mnt/software/z/zlib/1.2.8-cloudflare
 
 boost-headers-install:
-	rsync -av --delete ${BOOST_ORIG}/include/boost ${PREFIX}/include/
+	ln -sf ${BOOST_ORIG}/include/boost ${PREFIX}/include/
 	touch done/$@
 boost-install: boost-headers-install
 	# TODO: Install only the ones we actually need.
@@ -121,7 +121,10 @@ export BOOST_ROOT
 all: basic gc sl cc cc2
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
-ccs-install: seqan-install boost-headers-install htslib-install
+pbcopper-install: zlib-install boost-headers-install
+	cd ${REPOS}/pbcopper && bash ${PFHOME}/install-pbcopper.sh
+	touch done/$@
+ccs-install: seqan-install htslib-install boost-headers-install
 	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ccs.sh
 	touch done/$@
 seqan-install: zlib-install

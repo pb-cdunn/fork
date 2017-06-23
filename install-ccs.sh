@@ -22,8 +22,9 @@ cmake \
         -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.${DYLIB} \
         -DSEQAN_INCLUDE_DIRS=${PREFIX}/include \
         -Dpbcopper_INCLUDE_DIRS=${PREFIX}/include \
-        -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \
+        -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.${DYLIB} \
     ..
-${MAKE}
+
+make
 rsync -av ccs ${PREFIX}/bin/
 #TODO: Ask MJ why he had "-ax".

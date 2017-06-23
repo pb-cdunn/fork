@@ -2,7 +2,10 @@
 
 all: # default rule
 
-setup: install-pip
+setup:
+	mkdir -p ${PREFIX}
+	mkdir -p done/
+	${MAKE} install-pip
 
 PFHOME:=$(shell pwd)
 SHELL     = /bin/bash -e

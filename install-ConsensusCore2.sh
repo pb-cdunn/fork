@@ -1,4 +1,11 @@
 set -vex
+export BOOST_ROOT=${PREFIX}
+export pbcopper_INCLUDE_DIRS=${PREFIX}/include
+export PacBioBAM_INCLUDE_DIRS=${PREFIX}/include
+export SEQAN_INCLUDE_DIRS=${PREFIX}/include
+export pbcopper_LIBRARIES=${PREFIX}/lib
+export PacBioBAM_LIBRARIES=${PREFIX}/lib
+export SEQAN_LIBRARIES=${PREFIX}/lib
 VERBOSE=1  pip install -v --no-deps --user .
 
 # Old env-vars:

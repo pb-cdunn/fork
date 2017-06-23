@@ -3,7 +3,9 @@
 all: # default rule
 
 setup:
-	mkdir -p ${PREFIX}
+	mkdir -p ${PREFIX}/include
+	mkdir -p ${PREFIX}/lib
+	mkdir -p ${PREFIX}/bin
 	mkdir -p done/
 	${MAKE} install-pip
 

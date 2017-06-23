@@ -19,7 +19,9 @@ cmake \
 #cmake -L
 make VERBOSE=1
 rsync -av bin/ ${PREFIX}/bin
-rsync -av lib/ ${PREFIX}/lib
-ln -sf include/pbbam ${PREFIX}/include/
-ln -sf repos/pbbam/third-party/htslib/htslib/htslib ${PREFIX}/include/
-ln -sf repos/pbbam/third-party/htslib/htslib/cram ${PREFIX}/include/
+rsync -av lib/lib* ${PREFIX}/lib
+rsync external/htslib/lib* ${PREFIX}/lib
+cd ..
+ln -sf $(pwd)/include/pbbam ${PREFIX}/include/
+ln -sf $(pwd)/third-party/htslib/htslib/htslib ${PREFIX}/include/
+ln -sf $(pwd)/third-party/htslib/htslib/cram ${PREFIX}/include/

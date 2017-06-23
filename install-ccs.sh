@@ -5,24 +5,18 @@ set -vex
 mkdir -p _build
 cd _build
 
-if [ -e ${PREFIX}/lib/libpbbam.${DYLIB} ]; then
-    PacBioBAM_LIBRARIES=${PREFIX}/lib/libpbbam.${DYLIB}
-else
-    PacBioBAM_LIBRARIES=${PREFIX}/lib/libpbbam.a
-fi
-
 cmake \
         -DUNY_build_tests=OFF \
         -DZLIB_INCLUDE_DIRS=${PREFIX}/include \
         -DZLIB_LIBRARIES=${PREFIX}/lib/libz.${DYLIB} \
         -DBoost_INCLUDE_DIRS=${PREFIX}/include \
         -DPacBioBAM_INCLUDE_DIRS=${PREFIX}/include \
-        -DPacBioBAM_LIBRARIES=${PacBioBAM_LIBRARIES} \
+        -DPacBioBAM_LIBRARIES=${PREFIX}/lib/libpbbam.${DYLIB} \
         -DHTSLIB_INCLUDE_DIRS=${PREFIX}/include \
         -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.${DYLIB} \
         -DSEQAN_INCLUDE_DIRS=${PREFIX}/include \
         -Dpbcopper_INCLUDE_DIRS=${PREFIX}/include \
-        -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.${DYLIB} \
+        -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \
     ..
 
 make

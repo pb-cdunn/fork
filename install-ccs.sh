@@ -1,5 +1,5 @@
-# Required vars: PREFIX DYLIB BOOST_ROOT
-# Required deps: z boost bam hts seqan pbcopper
+# Required vars: PREFIX DYLIB
+# Required deps: z boost pbbam hts seqan pbcopper
 
 set -vex
 mkdir -p _build
@@ -14,7 +14,7 @@ fi
 cmake \
         -DUNY_build_tests=OFF \
         -DZLIB_INCLUDE_DIRS=${PREFIX}/include \
-        -DZLIB_LIBRARIES=${PREFIX}/lib/libz.{DYLIB} \
+        -DZLIB_LIBRARIES=${PREFIX}/lib/libz.${DYLIB} \
         -DBoost_INCLUDE_DIRS=${PREFIX}/include \
         -DPacBioBAM_INCLUDE_DIRS=${PREFIX}/include \
         -DPacBioBAM_LIBRARIES=${PacBioBAM_LIBRARIES} \

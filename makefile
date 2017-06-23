@@ -58,12 +58,14 @@ ifeq ($(OPSYS),Darwin)
 DYLIB:=dylib
 DYLD_LIBRARY_PATH:=$(PREFIX)/lib:${DYLD_LIBRARY_PATH}
 export DYLD_LIBRARY_PATH
+export DYLIB
 
 else
 
 DYLIB:=so
 LD_LIBRARY_PATH:=$(PREFIX)/lib:${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH
+export DYLIB
 
 endif
 
@@ -104,9 +106,9 @@ boost-install: boost-headers-install
 	# TODO: Install only the ones we actually need.
 	rsync -av ${BOOST_ORIG}/lib/ ${PREFIX}/lib
 	touch done/$@
-htslib-install:
-	rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
-	rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
+htslib-install: pbbam-install # TEMPORARY, UNTIL DEREK UPGRADES HTSLIB
+	#rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
+	#rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
 	touch done/$@
 zlib-install:
 	rsync -av ${ZLIB_ORIG}/include/ ${PREFIX}/include/
@@ -121,7 +123,10 @@ export BOOST_ROOT
 all: basic gc sl cc cc2
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
-pbcopper-install: zlib-install boost-headers-install
+pbbam-install: boost-headers-install #htslib-install RE_ADD LATER!!!
+	cd ${REPOS}/pbbam && bash ${PFHOME}/install-pbbam.sh
+	touch done/$@
+pbcopper-install: boost-headers-install
 	cd ${REPOS}/pbcopper && bash ${PFHOME}/install-pbcopper.sh
 	touch done/$@
 ccs-install: seqan-install htslib-install boost-headers-install
@@ -130,12 +135,12 @@ ccs-install: seqan-install htslib-install boost-headers-install
 seqan-install: zlib-install
 	cd ${REPOS}/seqan && tar cf - include|tar xf - -C ${PREFIX}/
 	touch done/$@
-foo:
-	     CMAKE_COMMAND=$(CMAKE) \
-        Boost_INCLUDE_DIRS=$(BOOST_ROOT)/include \
-              SWIG_COMMAND=$(shell . $(PREFIX)/setup-env.sh && which swig) \
-     pbcopper_INCLUDE_DIRS=$(PREFIX)/include \
-        pbcopper_LIBRARIES=$(PREFIX)/lib/libpbcopper.a \
+# ConsensusCore2:
+#	     CMAKE_COMMAND=$(CMAKE) \
+#        Boost_INCLUDE_DIRS=$(BOOST_ROOT)/include \
+#              SWIG_COMMAND=$(shell . $(PREFIX)/setup-env.sh && which swig) \
+#     pbcopper_INCLUDE_DIRS=$(PREFIX)/include \
+#        pbcopper_LIBRARIES=$(PREFIX)/lib/libpbcopper.a \
 
 ConsensusCore2-pip:
 	cd ${REPOS}/unanimity; \

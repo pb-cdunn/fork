@@ -181,7 +181,7 @@ GenomicConsensus-pip: ConsensusCore-pip
 fetch:
 	${MAKE} -f fetch.mk
 install-pip:
-	python2.7 get-pip.py --user
+	python2.7 get-pip.py --user --force
 	touch done/$@
 
 # NOT USED

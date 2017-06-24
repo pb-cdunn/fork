@@ -6,7 +6,7 @@ setup:
 	mkdir -p ${PREFIX}/include
 	mkdir -p ${PREFIX}/lib
 	mkdir -p ${PREFIX}/bin
-	mkdir -p done/
+	mkdir -p done/ repos/
 	${MAKE} install-pip
 
 PFHOME:=$(shell pwd)
@@ -180,6 +180,8 @@ GenomicConsensus-pip: ConsensusCore-pip
 	touch done/$@
 fetch:
 	${MAKE} -f fetch.mk
+fetch-pb:
+	${MAKE} -f fetch-pb.mk
 install-pip:
 	python2.7 get-pip.py --user --force
 	touch done/$@

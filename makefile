@@ -129,11 +129,13 @@ zlib-install:
 #export BOOST_ROOT
 
 
-all: basic sl polish
-polish: gc cc cc2 ccs pbalign-pip
+all: basic sl polish FALCON_unzip-pip
+polish: gc cc cc2 ccs pbalign-pip dextractor-install bam2fastx-install
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
 ccs: ccs-install
+dextractor-install:
+bam2fastx-install:
 pbalign-pip: pbcore-pip pbcommand-pip samtools-install blasr-install
 samtools-install:
 	bash ${PFHOME}/install-samtools.sh

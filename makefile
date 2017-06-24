@@ -130,12 +130,14 @@ zlib-install:
 
 
 all: basic sl polish
-polish: gc cc cc2 ccs pbalign-install
+polish: gc cc cc2 ccs pbalign-pip
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
 ccs: ccs-install
-pbalign-install: pbcore-pip pbcommand-pip samtools-install blasr-install
+pbalign-pip: pbcore-pip pbcommand-pip samtools-install blasr-install
 samtools-install:
+	bash ${PFHOME}/install-samtools.sh
+	touch done/$@
 blasr-install: blasr_libcpp-install
 	cd ${REPOS}/blasr && bash ${PFHOME}/install-blasr.sh
 	touch done/$@

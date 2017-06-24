@@ -129,10 +129,22 @@ zlib-install:
 #export BOOST_ROOT
 
 
-all: basic gc sl cc cc2 ccs
+all: basic sl polish
+polish: gc cc cc2 ccs pbalign-install
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 cc2: ConsensusCore2-pip
 ccs: ccs-install
+pbalign-install: pbcore-pip pbcommand-pip samtools-install blasr-install
+samtools-install:
+blasr-install: blasr_libcpp-install
+	cd ${REPOS}/blasr && bash ${PFHOME}/install-blasr.sh
+	touch done/$@
+blasr_libcpp-install: pbbam-install hdf5-install boost-headers-install
+	cd ${REPOS}/blasr_libcpp && bash ${PFHOME}/install-blasr_libcpp.sh
+	touch done/$@
+hdf5-install:
+	bash ${PFHOME}/install-hdf5.sh
+	touch done/$@
 pbbam-install: boost-headers-install #htslib-install RE_ADD LATER!!!
 	cd ${REPOS}/pbbam && bash ${PFHOME}/install-pbbam.sh
 	touch done/$@

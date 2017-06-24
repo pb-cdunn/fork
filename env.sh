@@ -12,9 +12,10 @@ module load ccache
 
 #module load zlib # IMPORTANT: Do NOT load this!
 
-set -vex
+#set -vex
 
-PFHOME=/scratch/cdunn/pitchfork
-PREFIX=/scratch/cdunn/pu
+#PFHOME=/scratch/cdunn/pitchfork
+PFHOME=$(pwd)
+PREFIX=${PFHOME}/.git/LOCAL
 PYTHONUSERBASE=${PREFIX}
 export PFHOME PREFIX PYTHONUSERBASE

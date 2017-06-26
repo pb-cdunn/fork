@@ -40,7 +40,7 @@ install-pip:
 
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; pip install -v --user .
+	cd ${REPOS}/$*; pip install -v --user --force .
 	touch done/$@
 
 # NOT USED

@@ -42,7 +42,9 @@ damasker-install:
 dextractor-install:
 	cd ${REPOS}/DEXTRACTOR && ${MAKE} all && ${MAKE} install
 	touch done/$@
-bam2fastx-install:
+bam2fastx-install: zlib-install htslib-install pbbam-install pbcopper-install
+	cd ${REPOS}/bam2fastx && bash ${PFHOME}/install-bam2fastx.sh
+	touch done/$@
 samtools-install:
 	bash ${PFHOME}/install-samtools.sh
 	touch done/$@

@@ -167,16 +167,18 @@ ConsensusCore2-pip:
 gc:GenomicConsensus-pip
 sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
 cc: ConsensusCore-pip
-ConsensusCore-pip: numpy-pip boost-headers-install
+ConsensusCore-pip: numpy-pypi boost-headers-install
 	cd ${REPOS}/ConsensusCore && bash ${PFHOME}/install-ConsensusCore.sh
 	touch done/$@
-numpy-pip:
-	pip install --user numpy
+GenomicConsensus-pip: pbcommand-pip pbcore-pip ConsensusCore-pip h5py-pypi
+	cd ${REPOS}/GenomicConsensus; python setup.py install -v --user
 	touch done/$@
-GenomicConsensus-pip: ConsensusCore-pip
+%-pypi:
+	pip install -v --user $*
+	touch done/$@
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; pip install -v --no-deps --user .
+	cd ${REPOS}/$*; pip install -v --user .
 	touch done/$@
 fetch:
 	${MAKE} -f fetch.mk

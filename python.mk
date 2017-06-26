@@ -35,7 +35,7 @@ GenomicConsensus-pip:
 	touch done/$@
 
 install-pip:
-	python2.7 get-pip.py --user
+	python2.7 get-pip.py --user --force
 	touch done/$@
 
 %-pip:

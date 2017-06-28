@@ -1,4 +1,5 @@
-all: polish
+all: align polish
+align: blasr-install samtools-install
 polish: ccs-install dextractor-install bam2fastx-install daligner-install dazzdb-install damasker-install
 
 include env.mk

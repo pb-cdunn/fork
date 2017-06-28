@@ -1,8 +1,8 @@
 all: basic sl ConsensusCore2-pip GenomicConsensus-pip FALCON_unzip-pip
 sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
-pbalign-pip: pbcore-pip pbcommand-pip samtools-install blasr-install
-GenomicConsensus-pip: pbcommand-pip pbcore-pip ConsensusCore-pip
+pbalign-pip: pbcore-pip pbcommand-pip
+GenomicConsensus-pip: pbcommand-pip pbcore-pip ConsensusCore-pip h5py-pypi
 
 include env.mk
 
@@ -32,6 +32,9 @@ ConsensusCore-pip: #boost-headers-install
 	touch done/$@
 GenomicConsensus-pip:
 	cd ${REPOS}/GenomicConsensus; python setup.py install -v --user
+	touch done/$@
+h5py-pypi:
+	pip install -v --user h5py==2.4.0
 	touch done/$@
 
 install-pip:

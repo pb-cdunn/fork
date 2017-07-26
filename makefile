@@ -22,4 +22,10 @@ cpp:
 python:
 	${MAKE} -f python.mk all
 
+manifest:
+	bash manifest.sh >| ${PREFIX}/lib/MANIFEST
+
+id:
+	bash id.sh >| ${PREFIX}/lib/ID
+
 # Be sure to source env.sh before using this makefile.

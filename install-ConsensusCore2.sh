@@ -8,6 +8,8 @@ export PacBioBAM_LIBRARIES=${PREFIX}/lib
 export SEQAN_LIBRARIES=${PREFIX}/lib
 VERBOSE=1  pip install -v --no-deps --user .
 
+#CMAKE_BUILD_TYPE=ReleaseWithAssert CMAKE_COMMAND=cmake VERBOSE=1 pip install --verbose --upgrade --no-deps .
+
 # Old env-vars:
 #	     CMAKE_COMMAND=$(CMAKE) \
 #        Boost_INCLUDE_DIRS=$(BOOST_ROOT)/include \

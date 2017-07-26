@@ -2,6 +2,7 @@ source /mnt/software/Modules/current/init/bash
 module purge
 module load git
 module load python/2.7.13-UCS2
+module load ninja
 module load gcc/4.9.2
 module load cmake
 module load swig

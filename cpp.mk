@@ -18,7 +18,7 @@ boost-install: boost-headers-install
 	# TODO: Install only the ones we actually need.
 	rsync -av ${BOOST_ORIG}/lib/ ${PREFIX}/lib
 	touch done/$@
-htslib-install: pbbam-install # TEMPORARY, UNTIL DEREK UPGRADES HTSLIB
+htslib-install: zlib-install pbbam-install # TEMPORARY, UNTIL DEREK UPGRADES HTSLIB
 	#rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
 	#rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
 	touch done/$@

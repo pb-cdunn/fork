@@ -1,6 +1,6 @@
 all: align polish
 align: blasr-install samtools-install
-polish: ccs-install dextractor-install bam2fastx-install daligner-install dazzdb-install damasker-install
+polish: nim-falcon-install ccs-install dextractor-install bam2fastx-install daligner-install dazzdb-install damasker-install
 
 include env.mk
 
@@ -50,6 +50,9 @@ bam2fastx-install: zlib-install htslib-install pbbam-install pbcopper-install
 	touch done/$@
 samtools-install:
 	bash ${PFHOME}/install-samtools.sh
+	touch done/$@
+nim-falcon-install:
+	cd ${REPOS}/nim-falcon && bash ${PFHOME}/install-nim-falcon.sh
 	touch done/$@
 blasr-install: blasr_libcpp-install
 	cd ${REPOS}/blasr && bash ${PFHOME}/install-blasr.sh

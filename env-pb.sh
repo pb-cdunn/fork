@@ -7,6 +7,7 @@ module load gcc/4.9.2
 module load cmake
 module load swig
 module load ccache
+module load nim/0.17.1
 #module load boost
 #module load hdf5-tools/1.8.16
 #module load openblas # so ConsensusCore can use numpy

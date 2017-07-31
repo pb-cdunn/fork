@@ -2,13 +2,15 @@
 SHELL=bash -e
 GIT_CLONE=git clone --depth=1
 
-all: repos/pypeFLOW repos/FALCON repos/FALCON-polish repos/FALCON-pbsmrtpipe repos/GenomicConsensus repos/pbcommand repos/pbcore repos/pbcoretools repos/pbalign repos/ConsensusCore repos/unanimity repos/seqan repos/pbcopper repos/pbbam repos/blasr repos/blasr_libcpp repos/bam2fastx repos/DEXTRACTOR repos/DAZZ_DB repos/DALIGNER repos/DAMASKER repos/FALCON_unzip
+all: repos/nim-falcon repos/pypeFLOW repos/FALCON repos/FALCON-polish repos/FALCON-pbsmrtpipe repos/GenomicConsensus repos/pbcommand repos/pbcore repos/pbcoretools repos/pbalign repos/ConsensusCore repos/unanimity repos/seqan repos/pbcopper repos/pbbam repos/blasr repos/blasr_libcpp repos/bam2fastx repos/DEXTRACTOR repos/DAZZ_DB repos/DALIGNER repos/DAMASKER repos/FALCON_unzip
 repos/pbcommand:
 	cd repos && ${GIT_CLONE} https://github.com/PacificBiosciences/pbcommand
 #repos/unanimity:
 #	cd repos && ${GIT_CLONE} --recursive https://github.com/PacificBiosciences/unanimity
 repos/FALCON_unzip:
 	cd repos && ${GIT_CLONE} git@github.com:PacificBiosciences/FALCON_unzip_private FALCON_unzip
+repos/nim-falcon:
+	cd repos && ${GIT_CLONE} -b track1 git@github.com:bio-nim/nim-falcon && cd nim-falcon && git submodule update --init
 repos/%:
 	cd repos && ${GIT_CLONE} https://github.com/PacificBiosciences/$*
 #repos/bam2fastx:

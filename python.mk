@@ -31,7 +31,9 @@ ConsensusCore-pip: #boost-headers-install
 	cd ${REPOS}/ConsensusCore && bash ${PFHOME}/install-ConsensusCore.sh
 	touch done/$@
 GenomicConsensus-pip:
-	cd ${REPOS}/GenomicConsensus; python setup.py install -v --user
+	python -c 'import ConsensusCore as c; print c'
+	pip freeze | grep ConsensusCore
+	cd ${REPOS}/GenomicConsensus && python setup.py install -v --user
 	touch done/$@
 h5py-pypi:
 	pip install -v --user h5py==2.4.0

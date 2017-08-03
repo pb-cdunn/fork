@@ -20,9 +20,10 @@ boost-install: boost-headers-install
 	# TODO: Install only the ones we actually need.
 	rsync -av ${BOOST_ORIG}/lib/ ${PREFIX}/lib
 	touch done/$@
-htslib-install: zlib-install pbbam-install # TEMPORARY, UNTIL DEREK UPGRADES HTSLIB
-	#rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
-	#rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
+htslib-install: zlib-install #pbbam-install # TEMPORARY, UNTIL DEREK UPGRADES HTSLIB
+	rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
+	rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
+	rsync -av ${HTSLIB_ORIG}/bin/ ${PREFIX}/bin
 	touch done/$@
 zlib-install:
 	rsync -av ${ZLIB_ORIG}/include/ ${PREFIX}/include/
@@ -63,7 +64,7 @@ blasr_libcpp-install: pbbam-install hdf5-install boost-headers-install
 hdf5-install:
 	bash ${PFHOME}/install-hdf5.sh
 	touch done/$@
-pbbam-install: boost-headers-install #htslib-install RE_ADD LATER!!!
+pbbam-install: boost-headers-install htslib-install
 	cd ${REPOS}/pbbam && bash ${PFHOME}/install-pbbam.sh
 	touch done/$@
 pbcopper-install: boost-headers-install

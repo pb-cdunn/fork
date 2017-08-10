@@ -10,9 +10,11 @@ repos/pbcommand:
 repos/FALCON_unzip:
 	cd repos && ${GIT_CLONE} git@github.com:PacificBiosciences/FALCON_unzip_private FALCON_unzip
 repos/nim-falcon:
-	cd repos && ${GIT_CLONE} -b track1 git@github.com:bio-nim/nim-falcon && cd nim-falcon && git submodule update --init
+	cd repos && ${GIT_CLONE} -b dev git@github.com:bio-nim/nim-falcon && cd nim-falcon && git submodule update --init
+repos/seqan:
+	cd repos && ${GIT_CLONE} https://github.com/PacificBiosciences/seqan
 repos/%:
-	cd repos && ${GIT_CLONE} https://github.com/PacificBiosciences/$*
+	cd repos && ${GIT_CLONE} -b develop https://github.com/PacificBiosciences/$*
 #repos/bam2fastx:
 #	cd repos && ${GIT_CLONE} /home/UNIXHOME/cdunn/repo/bb/bam2fastx
 #repos/DEXTRACTOR:

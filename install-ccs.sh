@@ -19,6 +19,6 @@ cmake \
         -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \
     ..
 
-make
+make -j
 rsync -av ccs ${PREFIX}/bin/
 #TODO: Ask MJ why he had "-ax".

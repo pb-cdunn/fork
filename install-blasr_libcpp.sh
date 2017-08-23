@@ -8,9 +8,9 @@ set -vex
 python2.7 configure.py PREFIX=${PREFIX}
 
 make clean # rely on ccache
-make libpbdata LDLIBS=-lpbbam
-make libpbihdf
-make libblasr
+make -j libpbdata LDLIBS=-lpbbam
+make -j libpbihdf
+make -j libblasr
 
 cp -aL alignment/libblasr.${DYLIB} ${PREFIX}/lib/
 cp -aL hdf/libpbihdf.${DYLIB} ${PREFIX}/lib/

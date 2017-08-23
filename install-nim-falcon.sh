@@ -4,6 +4,6 @@
 set -vex
 
 cd src
-make all
+make -j1 all
 
 rsync *.exe ${PREFIX}/bin/

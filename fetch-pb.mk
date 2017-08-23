@@ -9,6 +9,10 @@ repos/pbcommand:
 #	cd repos && ${GIT_CLONE} --recursive ssh://git@bitbucket.nanofluidics.com:7999/sat/unanimity
 repos/FALCON_unzip:
 	cd repos && ${GIT_CLONE} git@github.com:PacificBiosciences/FALCON_unzip_private FALCON_unzip
+repos/nim-falcon:
+	cd repos && ${GIT_CLONE} -b dev git@github.com:bio-nim/nim-falcon && cd nim-falcon && git submodule update --init
+repos/seqan:
+	cd repos && ${GIT_CLONE} https://github.com/PacificBiosciences/seqan
 repos/%:
 	cd repos && ${GIT_CLONE} ssh://git@bitbucket.nanofluidics.com:7999/sat/$*
 #repos/bam2fastx:

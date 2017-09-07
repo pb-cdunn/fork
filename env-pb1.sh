@@ -18,7 +18,7 @@ module load zlib/1.2.11
 module load htslib/1.5
 module load gtest/1.8.0_p20170819
 module load boost/1.60
-module load hdf5-tools/1.8.16
+module load hdf5-tools/1.8.19
 module load cram/0.7
 
 # remove trailing "/include", because CMake is brain-damaged

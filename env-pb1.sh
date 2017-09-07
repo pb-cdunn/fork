@@ -1,7 +1,10 @@
 type module >& /dev/null || . /mnt/software/Modules/current/init/bash
+module purge
 ################
 # DEPENDENCIES #
 ################
+
+export PATH=/mnt/software/a/anaconda2/4.2.0/bin:$PATH
 
 # buildsystem dependencies
 module load meson/0.41.1

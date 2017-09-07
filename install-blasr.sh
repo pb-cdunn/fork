@@ -7,6 +7,7 @@ python2.7 configure.py --shared PREFIX=${PREFIX} \
         LIBPBDATA_INC=${PREFIX}/include/pbdata \
         LIBPBIHDF_INC=${PREFIX}/include/hdf \
          LIBBLASR_INC=${PREFIX}/include/alignment \
+         HDF5_LIB=${PREFIX}/lib
 
 make blasr
 make -C utils

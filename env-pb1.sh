@@ -11,6 +11,7 @@ module load meson/0.41.1
 module load ninja/1.7.2
 
 module load gcc/6.4.0
+module load swig
 #module load gcc/5.3.0 # problem with our HDF5 now
 module load ccache/3.3.4
 module load git/2.8.3

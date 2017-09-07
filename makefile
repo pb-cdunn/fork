@@ -19,7 +19,7 @@ fetch-pb:
 cpp:
 	${MAKE} -f cpp.mk all
 
-python:
+python: cpp
 	${MAKE} -f python.mk all
 
 manifest:

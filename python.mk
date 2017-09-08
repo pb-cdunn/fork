@@ -1,4 +1,5 @@
-all: basic sl ConsensusCore2-pip GenomicConsensus-pip FALCON_unzip-pip
+all: basic sl pbt ConsensusCore2-pip GenomicConsensus-pip FALCON_unzip-pip
+pbt: pbtranscript-pip cDNA_Cupcake-pip
 sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
 pbalign-pip: pbcore-pip pbcommand-pip

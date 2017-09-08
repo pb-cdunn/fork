@@ -16,7 +16,7 @@ PIP_CACHE_DIR?=${PIP_CACHE}
 # With that, we do not actually need to pass --cache-dir, but it does not hurt.
 
 PIP         = LDSHARED="$(CC) -shared" AR="$(shell $(CC) --print-prog-name=ar)" $(PREFIX)/bin/pip --cache-dir $(PIP_CACHE_DIR)
-PIP_INSTALL = $(PIP) install -v --upgrade --user
+PIP_INSTALL = $(PIP) install -v --find-links=/home/cdunn/wheelhouse/glibc-2.12/ --upgrade --user
 
 WHEEL_DIR=${PFHOME}/wheels
 DIST_DIR=${PFHOME}/dist

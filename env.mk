@@ -74,7 +74,6 @@ export CCACHE_DIR
 export SCCACHE_DIR
 export PATH              := $(PREFIX)/bin:$(PFHOME)/bin:${PATH}
 export PKG_CONFIG_PATH   := $(PREFIX)/lib/pkgconfig
-export PIP_CACHE_DIR
 
 REPOS=/home/UNIXHOME/cdunn/repo/bb
 REPOS=repos

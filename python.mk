@@ -14,10 +14,11 @@ include env.mk
 
 PIP_CACHE:=${PFHOME}/.git/pip
 PIP_CACHE_DIR?=${PIP_CACHE}
+export PIP_CACHE_DIR
 # With that, we do not actually need to pass --cache-dir, but it does not hurt.
 
 PIP         = LDSHARED="$(CC) -shared" AR="$(shell $(CC) --print-prog-name=ar)" $(PREFIX)/bin/pip --cache-dir $(PIP_CACHE_DIR)
-PIP_INSTALL = $(PIP) install -v --find-links=/home/cdunn/wheelhouse/gcc-6/ --upgrade --user
+PIP_INSTALL = $(PIP) install -v --find-links=/home/cdunn/wheelhouse/gcc-6/
 
 WHEEL_DIR=${PFHOME}/wheels
 DIST_DIR=${PFHOME}/dist
@@ -37,7 +38,7 @@ GenomicConsensus-pip:
 	cd ${REPOS}/GenomicConsensus && python setup.py install -v --user
 	touch done/$@
 h5py-pypi:
-	pip install -v --user h5py==2.4.0
+	${PIP_INSTALL} -v --user h5py==2.4.0
 	touch done/$@
 
 install-pip:
@@ -46,7 +47,7 @@ install-pip:
 
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; pip install -v --user --force .
+	cd ${REPOS}/$*; ${PIP_INSTALL} -v --user --force .
 	touch done/$@
 
 # NOT USED

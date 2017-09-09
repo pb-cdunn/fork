@@ -8,6 +8,7 @@ setup:
 	mkdir -p ${PREFIX}/bin
 	mkdir -p done/ repos/
 	${MAKE} -f python.mk install-pip
+	cp -f ./realpath.py ${PREFIX}/bin/realpath
 
 
 fetch:

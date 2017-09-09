@@ -16,7 +16,8 @@ repos/seqan:
 repos/cDNA_Cupcake:
 	cd repos && ${GIT_CLONE} https://github.com/Magdoll/cDNA_Cupcake
 repos/minimap:
-	cd repos && ${GIT_CLONE} https://github.com/lh3/minimap
+	#cd repos && ${GIT_CLONE} https://github.com/lh3/minimap
+	cd repos && ${GIT_CLONE} git@github.com:PacificBiosciences/minimap
 
 BASE=https://github.com/PacificBiosciences
 BRANCH=develop

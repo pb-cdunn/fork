@@ -1,6 +1,7 @@
-all: align polish
+all: align polish pbt
 align: blasr-install samtools-install
 polish: nim-falcon-install ccs-install dextractor-install bam2fastx-install daligner-install dazzdb-install damasker-install
+pbt: minimap-install
 
 include env.mk
 
@@ -75,4 +76,7 @@ ccs-install: seqan-install htslib-install pbcopper-install pbbam-install boost-h
 	touch done/$@
 seqan-install: zlib-install
 	cd ${REPOS}/seqan && tar cf - include|tar xf - -C ${PREFIX}/
+	touch done/$@
+minimap-install: zlib-install
+	cd ${REPOS}/minimap && bash ${PFHOME}/install-minimap.sh
 	touch done/$@

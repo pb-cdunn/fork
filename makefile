@@ -1,4 +1,6 @@
+default:
 all: setup fetch cpp python
+all-pb: setup fetch-pb cpp python extra
 .NOTPARALLEL:
 # -j is fine. We turn it off where needed.
 
@@ -22,6 +24,9 @@ cpp:
 
 python: cpp
 	${MAKE} -f python.mk all
+
+extra:
+	${MAKE} -f extra.mk all
 
 manifest:
 	bash manifest.sh >| ${PREFIX}/lib/MANIFEST

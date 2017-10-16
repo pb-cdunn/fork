@@ -47,7 +47,7 @@ install-pip:
 
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; ${PIP_INSTALL} -v --user --force --edit .
+	cd ${REPOS}/$*; ${PIP_INSTALL} -v --user --force .
 	touch done/$@
 
 # NOT USED

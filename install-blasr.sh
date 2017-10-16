@@ -38,6 +38,7 @@ cmake \
 #sed -i -e 's@/-I@/ -I@g' build.ninja
 ninja
 find .
+rsync -av blasr sawriter ${PREFIX}/bin/
 cd ..
 
 #tar cf - blasr | tar xf - -C ${PREFIX}/bin/

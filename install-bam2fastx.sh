@@ -14,7 +14,6 @@ cmake \
               -DZLIB_INCLUDE_DIRS=${PREFIX}/include \
               -DZLIB_LIBRARIES=${PREFIX}/lib/libz.${DYLIB} \
               -DPacBioBAM_LIBRARIES=${PREFIX}/lib/libpbbam.${DYLIB} \
-              -DHTSLIB_INCLUDE_DIRS=${PREFIX}/include \
               -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.a \
               -Dpbcopper_INCLUDE_DIRS=${PREFIX}/include \
               -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \

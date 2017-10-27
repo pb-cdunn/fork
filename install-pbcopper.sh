@@ -2,12 +2,14 @@
 # Required deps: z boost
 
 set -vex
+rm -rf _build
 mkdir -p _build
 cd _build
 
 cmake \
           -Dpbcopper_build_shared=OFF \
           -Dpbcopper_build_tests=OFF \
+          -Dpbcopper_build_docs=OFF \
           -DBoost_INCLUDE_DIRS=${PREFIX}/include \
     ..
 make

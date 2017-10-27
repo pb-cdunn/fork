@@ -29,7 +29,7 @@ module load cram/0.7
 #module load openblas # so ConsensusCore can use numpy
 
 module load mummer
-module load doxygen
+#module load doxygen
 
 # remove trailing "/include", because CMake is brain-damaged
 BOOST_ROOT=${BOOST_ROOT%/include}

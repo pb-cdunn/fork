@@ -6,7 +6,7 @@ module purge
 
 #export PATH=/mnt/software/a/anaconda2/4.2.0/bin:$PATH
 # Anaconda does not work with gcc/6.
-module load python/2.7.13-UCS4
+module load python/2.7.13-UCS${UCS}
 
 # buildsystem dependencies
 module load meson/0.41.1

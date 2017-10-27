@@ -1,6 +1,7 @@
 default:
 all: setup fetch cpp python
 all-pb: setup fetch-pb cpp python extra
+	${MAKE} manifest
 .NOTPARALLEL:
 # -j is fine. We turn it off where needed.
 

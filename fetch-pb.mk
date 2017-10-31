@@ -12,16 +12,16 @@ repos/seqan:        BRANCH=master
 repos/cDNA_Cupcake: BRANCH=master
 repos/minimap:      BRANCH=master
 
-repos/cDNA_Cupcake: BASE=git@github.com:/Magdoll
+repos/cDNA_Cupcake: BASE=https://github.com/Magdoll
 repos/minimap:      BASE=https://github.com/lh3
-repos/nim-falcon:   BASE=git@github.com:bio-nim
+repos/nim-falcon:   BASE=https://github.com/bio-nim
 
 repos/nim-falcon/repos/msgpack4nim: repos/nim-falcon
 	cd repos/nim-falcon; git submodule update --init
 
-BASE=git@github.com:PacificBiosciences
+BASE=https://github.com/PacificBiosciences
 BRANCH=develop
 ${SAT}: BASE=http://git@bitbucket.nanofluidics.com:7990/scm/SAT
 ${SL}:  BASE=http://git@bitbucket.nanofluidics.com:7990/scm/SL
 repos/%:
-	${GIT_CLONE} -b ${BRANCH} ${BASE}/$* && mv $* repos/
+	${GIT_CLONE} -b ${BRANCH} ${BASE}/$*.git && mv $* repos/

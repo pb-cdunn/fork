@@ -5,6 +5,7 @@ SAT=repos/pypeFLOW repos/FALCON repos/FALCON_unzip_private repos/FALCON-polish r
 SL=repos/pbcommand
 
 all: repos/nim-falcon repos/seqan repos/bam2fastx repos/minimap repos/cDNA_Cupcake ${SAT} ${SL} repos/nim-falcon/repos/msgpack4nim
+repos/nim-falcon/repos/msgpack4nim: repos/nim-falcon
 
 repos/nim-falcon:   BRANCH=dev
 repos/seqan:        BRANCH=master
@@ -20,7 +21,7 @@ repos/nim-falcon/repos/msgpack4nim: repos/nim-falcon
 
 BASE=git@github.com:PacificBiosciences
 BRANCH=develop
-${SAT}: BASE=ssh://git@bitbucket.nanofluidics.com:7999/SAT
-${SL}:  BASE=ssh://git@bitbucket.nanofluidics.com:7999/SL
+${SAT}: BASE=http://git@bitbucket.nanofluidics.com:7990/scm/SAT
+${SL}:  BASE=http://git@bitbucket.nanofluidics.com:7990/scm/SL
 repos/%:
 	${GIT_CLONE} -b ${BRANCH} ${BASE}/$* && mv $* repos/

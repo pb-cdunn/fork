@@ -21,7 +21,7 @@ repos/nim-falcon/repos/msgpack4nim: repos/nim-falcon
 
 BASE=https://github.com/PacificBiosciences
 BRANCH=develop
-${SAT}: BASE=http://git@bitbucket.nanofluidics.com:7990/scm/SAT
-${SL}:  BASE=http://git@bitbucket.nanofluidics.com:7990/scm/SL
+${SAT}: BASE=http://bitbucket.nanofluidics.com:7990/scm/SAT
+${SL}:  BASE=http://bitbucket.nanofluidics.com:7990/scm/SL
 repos/%:
 	${GIT_CLONE} -b ${BRANCH} ${BASE}/$*.git && mv $* repos/

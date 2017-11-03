@@ -28,7 +28,7 @@ module load hdf5-tools/1.8.19
 module load cram/0.7
 #module load openblas # so ConsensusCore can use numpy
 
-module load mummer
+#module load mummer/4.0.0
 #module load doxygen
 
 # remove trailing "/include", because CMake is brain-damaged

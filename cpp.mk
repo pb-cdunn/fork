@@ -8,8 +8,8 @@ include env.mk
 # Note: pkg-config may be available for these. But
 # also note that our copies of the .pc files lack ${prefix}, so beware.
 #  https://github.com/open-source-parsers/jsoncpp/commit/2f178f390fce67bcfd1868ad14daee9778a4f941
-BOOST_ORIG=/mnt/software/b/boost/1.60
-HTSLIB_ORIG=/mnt/software/h/htslib/1.3.1
+BOOST_ORIG=${BOOST_ROOT}
+HTSLIB_ORIG=/mnt/software/h/htslib/1.6
 #ZLIB_ORIG=/mnt/software/z/zlib/1.2.8-cloudflare/centos6
 # https://jira.pacificbiosciences.com/browse/TAG-1415
 ZLIB_ORIG=${ZLIB_ROOT}

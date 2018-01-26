@@ -55,7 +55,7 @@ export DYLIB
 else
 
 DYLIB:=so
-LD_LIBRARY_PATH:=$(PREFIX)/lib:${LD_LIBRARY_PATH}
+LD_LIBRARY_PATH:=${PREFIX}/lib64:${PREFIX}/lib:${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH
 export DYLIB
 
@@ -73,7 +73,7 @@ export CCACHE_BASEDIR
 export CCACHE_DIR
 export SCCACHE_DIR
 export PATH              := $(PREFIX)/bin:$(PFHOME)/bin:${PATH}
-export PKG_CONFIG_PATH   := $(PREFIX)/lib/pkgconfig:${PKG_CONFIG_PATH}
+export PKG_CONFIG_PATH   := ${PREFIX}/lib64/pkgconfig:${PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}
 
 REPOS=/home/UNIXHOME/cdunn/repo/bb
 REPOS=repos

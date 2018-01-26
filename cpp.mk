@@ -56,10 +56,10 @@ samtools-install:
 nim-falcon-install:
 	cd ${REPOS}/nim-falcon && bash ${PFHOME}/install-nim-falcon.sh
 	touch done/$@
-blasr-install: pbbam-install hdf5-install boost-headers-install  #blasr_libcpp-install
+blasr-install: pbbam-install hdf5-install boost-headers-install blasr_libcpp-install
 	cd ${REPOS}/blasr && bash ${PFHOME}/install-blasr.sh
 	touch done/$@
-blasr_libcpp-install: pbbam-install hdf5-install boost-headers-install #googletest-install
+blasr_libcpp-install: pbbam-install hdf5-install boost-headers-install  #googletest-install
 	cd ${REPOS}/blasr_libcpp && bash ${PFHOME}/install-blasr_libcpp.sh
 	touch done/$@
 googletest-install:

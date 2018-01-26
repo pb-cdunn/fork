@@ -1,9 +1,14 @@
-all: basic sl pbt ConsensusCore2-pip GenomicConsensus-pip FALCON_unzip_private-pip
-pbt: pbtranscript2-pip pbtranscript-pip cDNA_Cupcake-pip
+all: basic FALCON_unzip_private-pip sl GenomicConsensus-pip ConsensusCore2-pip # pbt
+	#${PIP_INSTALL} --user pysam
+	#${PIP_INSTALL} -v --user h5py==2.4.0
+pbt: pbtranscript-pip cDNA_Cupcake-pip #pbtranscript2-pip
 sl: pbcommand-pip pbcore-pip pbcoretools-pip pbalign-pip
 basic: FALCON-pip pypeFLOW-pip FALCON-polish-pip FALCON-pbsmrtpipe-pip
+foo:
+	echo "PY=$(shell which python)"
+	exit 1
 pbalign-pip: pbcore-pip pbcommand-pip
-GenomicConsensus-pip: pbcommand-pip pbcore-pip ConsensusCore-pip h5py-pypi
+GenomicConsensus-pip: pbcommand-pip pbcore-pip pysam-pypi ConsensusCore-pip h5py-pypi
 
 include env.mk
 
@@ -42,6 +47,7 @@ h5py-pypi:
 	touch done/$@
 
 install-pip:
+	echo "BASE=${PYTHONUSERBASE}"
 	python2.7 get-pip.py --user --force
 	touch done/$@
 

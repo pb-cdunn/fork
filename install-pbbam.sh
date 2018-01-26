@@ -12,6 +12,8 @@ cmake \
             -DPacBioBAM_build_tests=OFF \
             -DZLIB_INCLUDE_DIRS=${PREFIX}/include \
             -DZLIB_LIBRARIES=${PREFIX}/lib/libz.${DYLIB} \
+            -DHTSLIB_INCLUDE_DIRS=${PREFIX}/include \
+            -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.${DYLIB} \
             -DBoost_INCLUDE_DIRS=${PREFIX}/include \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_SKIP_BUILD_RPATH=FALSE \

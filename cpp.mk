@@ -10,13 +10,14 @@ include env.mk
 #  https://github.com/open-source-parsers/jsoncpp/commit/2f178f390fce67bcfd1868ad14daee9778a4f941
 BOOST_ROOT=/usr/local
 BOOST_ORIG=${BOOST_ROOT}
-HDF5_DIR=/usr/local/Cellar/hdf5@1.8/1.8.20
-#HTSLIB_ORIG=/mnt/software/h/htslib/1.6
+#HDF5_DIR=/usr/local/Cellar/hdf5@1.8/1.8.20
+HTSLIB_ORIG=/mnt/software/h/htslib/1.6
 #HTSLIB_ORIG=/usr/local
 #ZLIB_ORIG=/mnt/software/z/zlib/1.2.8-cloudflare/centos6
+ZLIB_ORIG=/mnt/software/z/zlib/1.2.11
 # https://jira.pacificbiosciences.com/browse/TAG-1415
 ZLIB_ROOT=/usr/local/opt/zlib
-ZLIB_ORIG=${ZLIB_ROOT}
+#ZLIB_ORIG=${ZLIB_ROOT}
 
 boost-headers-install:
 	ln -sf ${BOOST_ORIG}/include/boost ${PREFIX}/include/
@@ -26,10 +27,10 @@ boost-install: boost-headers-install
 	rsync -av ${BOOST_ORIG}/lib/ ${PREFIX}/lib
 	touch done/$@
 htslib-install: #zlib-install #pbbam-install # TEMPORARY, UNTIL DEREK UPGRADES HTSLIB
-	cd ${REPOS}/htslib && bash ${PFHOME}/install-htslib.sh
-	#rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
-	#rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
-	#rsync -av ${HTSLIB_ORIG}/bin/ ${PREFIX}/bin
+	#cd ${REPOS}/htslib && bash ${PFHOME}/install-htslib.sh
+	rsync -av --delete  ${HTSLIB_ORIG}/include/htslib ${PREFIX}/include/
+	rsync -av ${HTSLIB_ORIG}/lib/ ${PREFIX}/lib
+	rsync -av ${HTSLIB_ORIG}/bin/ ${PREFIX}/bin
 	touch done/$@
 zlib-install: htslib-install # does not really depend, but not sure where actually needed yet
 	rsync -av ${ZLIB_ORIG}/include/ ${PREFIX}/include/

@@ -12,7 +12,21 @@ export pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a
 #export ZLIB_LIBRARIES=${PREFIX}/lib/libzlib.${DYLIB}
 #export SEQAN_LIBRARIES=${PREFIX}/lib?
 
-VERBOSE=1  pip install -v --no-deps --user .
+#VERBOSE=1  pip install -v --no-deps --user .
+
+###LDFLAGS='-static-libstdc++' \
+###CMAKE_BUILD_TYPE=ReleaseWithAssert \
+###CMAKE_COMMAND=cmake \
+###VERBOSE=1 \
+###pip install --user --no-index --verbose .
+
+	     CMAKE_COMMAND=cmake \
+        Boost_INCLUDE_DIRS=${BOOST_ROOT}/include \
+        SWIG_COMMAND=$(which swig) \
+        pbcopper_INCLUDE_DIRS=${PREFIX}/include \
+        pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \
+                   VERBOSE=1 \
+        pip install --user --verbose --upgrade --no-deps .
 
 #CMAKE_BUILD_TYPE=ReleaseWithAssert CMAKE_COMMAND=cmake VERBOSE=1 pip install --verbose --upgrade --no-deps .
 

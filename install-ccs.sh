@@ -13,7 +13,7 @@ cmake \
         -DPacBioBAM_INCLUDE_DIRS=${PREFIX}/include \
         -DPacBioBAM_LIBRARIES=${PREFIX}/lib/libpbbam.${DYLIB} \
         -DHTSLIB_INCLUDE_DIRS=${PREFIX}/include \
-        -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.a \
+        -DHTSLIB_LIBRARIES=${PREFIX}/lib/libhts.${DYLIB} \
         -DSEQAN_INCLUDE_DIRS=${PREFIX}/include \
         -Dpbcopper_INCLUDE_DIRS=${PREFIX}/include \
         -Dpbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \

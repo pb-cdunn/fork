@@ -9,7 +9,7 @@ module load meson
 
 #export PATH=/mnt/software/a/anaconda2/4.2.0/bin:$PATH
 # Anaconda does not work with gcc/6.
-module load python/2.7.14-UCS${UCS-4}
+module load python/2-UCS${UCS:-4}
 
 # buildsystem dependencies
 module load ninja

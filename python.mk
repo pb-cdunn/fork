@@ -45,6 +45,9 @@ GenomicConsensus-pip:
 h5py-pypi:
 	${PIP_INSTALL} -v --user h5py==2.4.0
 	touch done/$@
+pysam-pypi:
+	${PIP_INSTALL} -v --user pysam==0.13
+	touch done/$@
 
 install-pip:
 	echo "BASE=${PYTHONUSERBASE}"

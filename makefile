@@ -5,19 +5,21 @@ all-pb: setup fetch-pb cpp python extra
 .NOTPARALLEL:
 # -j is fine. We turn it off where needed.
 
-setup:
+setup: | repos
 	mkdir -p ${PREFIX}/include
 	mkdir -p ${PREFIX}/lib
 	mkdir -p ${PREFIX}/bin
-	mkdir -p done/ repos/
+	mkdir -p done/
 	${MAKE} -f python.mk install-pip
 	#cp -f ./realpath.py ${PREFIX}/bin/realpath
 
+repos:
+	mkdir -p $@
 
-fetch:
+fetch: | repos
 	${MAKE} -f fetch.mk
 
-fetch-pb:
+fetch-pb: | repos
 	${MAKE} -f fetch-pb.mk
 
 cpp:

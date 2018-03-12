@@ -31,6 +31,7 @@ DIST_DIR=${PFHOME}/dist
 BDIST_DIR=${PFHOME}/bdist
 
 
+FALCON-pip: pypeFLOW-pip
 ConsensusCore2-pip:
 	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ConsensusCore2.sh
 	touch done/$@

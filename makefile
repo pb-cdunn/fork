@@ -38,4 +38,8 @@ manifest:
 id:
 	bash id.sh >| ${PREFIX}/lib/ID
 
+distclean:
+	git clean -xdf .
+	rm -rf repos/
+
 # Be sure to source env.sh before using this makefile.

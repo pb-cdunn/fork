@@ -33,6 +33,7 @@ extra:
 
 manifest:
 	bash manifest.sh >| ${PREFIX}/lib/MANIFEST
+	cp -f CHANGES.md ${PREFIX}/lib/
 
 id:
 	bash id.sh >| ${PREFIX}/lib/ID

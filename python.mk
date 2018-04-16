@@ -23,7 +23,7 @@ export PIP_CACHE_DIR
 # With that, we do not actually need to pass --cache-dir, but it does not hurt.
 
 PIP         = LDSHARED="$(CC) -shared" AR="$(shell $(CC) --print-prog-name=ar)" $(PREFIX)/bin/pip --cache-dir $(PIP_CACHE_DIR)
-PIP_INSTALL = $(PIP) install -v --find-links=/home/cdunn/wheelhouse/gcc-6/
+PIP_INSTALL = $(PIP) install --find-links=/home/cdunn/wheelhouse/gcc-6/
 
 WHEEL_DIR=${PFHOME}/wheels
 DIST_DIR=${PFHOME}/dist
@@ -55,9 +55,12 @@ install-pip:
 	python2.7 get-pip.py --user --force
 	touch done/$@
 
+# We cannot use --force b/c pip-10.0.0 wants all deps to be re-installable.
+# Could try --no-deps, but only if all deps are already installed.
+# Instead, trying --upgrade
 %-pip:
 	cd ${REPOS}/$*; rm -rf build/
-	cd ${REPOS}/$*; ${PIP_INSTALL} -v --user --force .
+	cd ${REPOS}/$*; ${PIP_INSTALL} --user --upgrade .
 	touch done/$@
 
 # NOT USED

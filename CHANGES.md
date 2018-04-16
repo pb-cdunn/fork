@@ -1,5 +1,9 @@
 CHANGES
 ===========
+16-Apr-2018
+-----------
+* Minor fixes for config-parsing.
+
 11-Apr-2018
 -----------
 * Bug fixes in Unzip.

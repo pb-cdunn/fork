@@ -27,6 +27,7 @@ module load htslib
 module load gtest
 module load boost
 module load hdf5-tools
+#module load hdf5-tools/1.10.2
 module load cram
 module load samtools
 #module load openblas # so ConsensusCore can use numpy

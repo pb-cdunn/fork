@@ -3,32 +3,10 @@
 
 set -vex
 
-rm -rf pbbam
-ln -s ../pbbam .
+LIB=/mnt/software/l/libblasr/develop/lib
 
-#python2.7 configure.py PREFIX=${PREFIX}
+cp -aL ${LIB}/lib* ${PREFIX}/lib
 
-#make clean # rely on ccache
-#make libpbdata LDLIBS=-lpbbam
-#make libpbihdf
-#make libblasr
-
-DISTFILES_URL=http://nexus/repository/unsupported/distfiles
-curl -sL $DISTFILES_URL/googletest/release-1.8.0.tar.gz \
-| tar zxf - --strip-components 1 -C googletest
-
-mkdir -p build
-rm -rf build/*
-cd build
-
-CMAKE_BUILD_TYPE=ReleaseWithAssert cmake -GNinja -DPacBioBAM_build_docs=OFF -DHDF5_ROOT=$HDF5_DIR ..
-
-ninja
-
-cd ..
-
-cp -aL build/liblibcpp.a ${PREFIX}/lib
-#cp -aL alignment/libblasr.${DYLIB} ${PREFIX}/lib/
-#cp -aL hdf/libpbihdf.${DYLIB} ${PREFIX}/lib/
-#cp -aL pbdata/libpbdata.${DYLIB} ${PREFIX}/lib/
+cd /mnt/software/l/libblasr/develop/include/libblasr
 tar cf - `find alignment hdf pbdata \( -name '*.hpp' -or -name '*.h' \)` | tar xf - -C ${PREFIX}/include
+cd -

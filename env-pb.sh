@@ -20,7 +20,7 @@ module load swig
 module load ccache
 module load git
 module load cmake
-module load nim/0.17.2
+module load nim/0.18.1
 
 module load zlib
 module load htslib

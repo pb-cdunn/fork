@@ -35,6 +35,10 @@ module load samtools
 #module load mummer/4.0.0
 #module load doxygen
 
+# We need these for pkg-config:
+module load pbbam/develop
+module load pbcopper/develop
+
 # remove trailing "/include", because CMake is brain-damaged
 BOOST_ROOT=${BOOST_ROOT%/include}
 # unset these variables to have meson discover all

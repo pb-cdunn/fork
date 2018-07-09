@@ -11,12 +11,12 @@ include env.mk
 BOOST_ROOT=/usr/local
 BOOST_ORIG=${BOOST_ROOT}
 #HDF5_DIR=/usr/local/Cellar/hdf5@1.8/1.8.20
-HTSLIB_ORIG=/mnt/software/h/htslib/1.6
+HTSLIB_ORIG=/mnt/software/h/htslib/1.8
 #HTSLIB_ORIG=/usr/local
 #ZLIB_ORIG=/mnt/software/z/zlib/1.2.8-cloudflare/centos6
 ZLIB_ORIG=/mnt/software/z/zlib/1.2.11
 # https://jira.pacificbiosciences.com/browse/TAG-1415
-ZLIB_ROOT=/usr/local/opt/zlib
+#ZLIB_ROOT=/usr/local/opt/zlib
 #ZLIB_ORIG=${ZLIB_ROOT}
 
 boost-headers-install:
@@ -63,10 +63,10 @@ nim-falcon-install:
 	cd ${REPOS}/nim-falcon && bash ${PFHOME}/install-nim-falcon.sh
 	touch done/$@
 blasr-install: pbbam-install hdf5-install boost-headers-install  #blasr_libcpp-install
-	cd ${REPOS}/blasr && bash ${PFHOME}/install-blasr.sh
+	bash ${PFHOME}/install-blasr.sh
 	touch done/$@
 blasr_libcpp-install: pbbam-install hdf5-install boost-headers-install #googletest-install
-	cd ${REPOS}/blasr_libcpp && bash ${PFHOME}/install-blasr_libcpp.sh
+	#cd ${REPOS}/blasr_libcpp && bash ${PFHOME}/install-blasr_libcpp.sh
 	touch done/$@
 googletest-install:
 	bash ${PFHOME}/install-googletest.sh
@@ -74,12 +74,12 @@ hdf5-install:
 	bash ${PFHOME}/install-hdf5.sh
 	touch done/$@
 pbbam-install: boost-headers-install htslib-install
-	cd ${REPOS}/pbbam && bash ${PFHOME}/install-pbbam.sh
+	bash ${PFHOME}/install-pbbam.sh
 	touch done/$@
 pbcopper-install: boost-headers-install
 	cd ${REPOS}/pbcopper && bash ${PFHOME}/install-pbcopper.sh
 	touch done/$@
-ccs-install: seqan-install htslib-install pbcopper-install pbbam-install boost-headers-install
+ccs-install: pbbam-install seqan-install htslib-install pbcopper-install pbbam-install boost-headers-install
 	cd ${REPOS}/unanimity && bash ${PFHOME}/install-ccs.sh
 	touch done/$@
 seqan-install: zlib-install

@@ -5,7 +5,8 @@ set -vex
 
 M=/mnt/software/p/pbbam/develop
 #rsync -av ${M}/bin/ ${PREFIX}/bin
-rsync -av ${M}/lib/lib* ${PREFIX}/lib
+rsync -av ${M}/lib/lib* ${PREFIX}/lib/
+rsync -av ${M}/bin/ ${PREFIX}/bin/
 #rsync external/htslib/lib* ${PREFIX}/lib
 cd ..
 ln -sf ${M}/include/pbbam ${PREFIX}/include/

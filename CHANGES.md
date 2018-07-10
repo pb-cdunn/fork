@@ -1,5 +1,12 @@
 CHANGES
 ===========
+09-Jul-2018
+-----------
+* Changes to Falcon deduplication.
+* Better subreads-filtering (based on "median" read-lengths).
+* Support for REPmask (up to 3 iterations).
+* Lots of minor clean-up, including input-config checks.
+
 04-May-2018
 -----------
 * May the Fourth be with you.

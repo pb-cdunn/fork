@@ -6,7 +6,7 @@ export pbcopper_INCLUDE_DIRS=${PREFIX}/include
 #export ZLIB_INCLUDE_DIRS=${PREFIX}/include
 #export SEQAN_INCLUDE_DIRS=${PREFIX}/include
 
-export pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a
+export pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.so
 #export PacBioBAM_LIBRARIES=${PREFIX}/lib/libpbbam.${DYLIB}
 #export HTSLIB_LIBRARIES=${PREFIX}/lib/libhtslib.${DYLIB}
 #export ZLIB_LIBRARIES=${PREFIX}/lib/libzlib.${DYLIB}
@@ -24,7 +24,7 @@ export pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a
         Boost_INCLUDE_DIRS=${BOOST_ROOT}/include \
         SWIG_COMMAND=$(which swig) \
         pbcopper_INCLUDE_DIRS=${PREFIX}/include \
-        pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.a \
+        pbcopper_LIBRARIES=${PREFIX}/lib/libpbcopper.so \
                    VERBOSE=1 \
         pip install --user --verbose --upgrade --no-deps .
 

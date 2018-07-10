@@ -2,6 +2,7 @@
 # Required deps: z boost pbbam hts seqan pbcopper
 
 set -vex
+rm -rf _build
 mkdir -p _build
 cd _build
 

@@ -5,6 +5,7 @@ set -o pipefail
 
 #python setup.py -v install --user --boost=${PREFIX}/include
 
+rm -rf dist/
 python setup.py bdist_wheel --boost=${BOOST_ROOT}
 
 echo dist/ConsensusCore-*.whl | xargs pip install --user --verbose

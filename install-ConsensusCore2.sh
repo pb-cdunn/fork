@@ -1,4 +1,5 @@
 set -vex
+git clean -xdf .
 export BOOST_ROOT=${PREFIX}
 export pbcopper_INCLUDE_DIRS=${PREFIX}/include
 #export PacBioBAM_INCLUDE_DIRS=${PREFIX}/include

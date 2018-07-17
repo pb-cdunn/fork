@@ -44,7 +44,7 @@ GenomicConsensus-pip:
 	cd ${REPOS}/GenomicConsensus && python setup.py install -v --user
 	touch done/$@
 h5py-pypi:
-	${PIP_INSTALL} -v --user h5py==2.4.0
+	#${PIP_INSTALL} -v --user h5py==2.4.0
 	touch done/$@
 pysam-pypi:
 	${PIP_INSTALL} -v --user pysam==0.13

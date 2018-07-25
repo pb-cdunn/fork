@@ -1,5 +1,12 @@
 CHANGES
 ===========
+25-Jul-2018
+-----------
+* Dump all variants from Arrow (for falcon-phase).
+* Median-filter for fasta files.
+* Support bam2dexta.
+* Minor fixes.
+
 09-Jul-2018
 -----------
 * Changes to Falcon deduplication.

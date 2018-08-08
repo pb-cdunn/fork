@@ -1,11 +1,21 @@
 CHANGES
 ===========
+08-Aug-2018
+-----------
+* Fix bug in fetch-reads that caused it to be single-threaded.
+* Drop hard-coded tmpdir for pbalign.
+* Use OrderedSet/Dict in ovlp_to_graph, for reproducibility.
+* Fix njobs for most tasks.
+* Update hgap4_adapt, for smrtlink users who want to run Unzip on the result.
+  * That should work with smrtlink-6.0 ("Kiwi" internally).
+
 25-Jul-2018
 -----------
 * Dump all variants from Arrow (for falcon-phase).
 * Median-filter for fasta files.
 * Support bam2dexta.
 * Minor fixes.
+* Support more recent networkx-2.
 
 09-Jul-2018
 -----------
